@@ -172,5 +172,4 @@ eliminarEquipo.addEventListener("click", () => {
 // 2)intente tambien hacer un archivo js unico para variables y aplicarles el export y otro para funciones pero al importarlos en main.js
 // algunas variables aparecian como que no las estaba usando en el documento y viceversa, que algunas funciones no las estaba usando en el documento
 // quizas es el orden en que son declaradas y llamadas? le di varias vueltas pero al final no lo pude resolver tampoco.
-// 3) en la linea 115 estan los eventos de los botones que filtran los pokemones, sucede que justo el boton "fire" no renderiza el filtrado
-// le agregue console.log(boton.id); para verificar si el boton funciona y si funciona, no se si sera tema de la api, las demas clases si funcionan
+ 

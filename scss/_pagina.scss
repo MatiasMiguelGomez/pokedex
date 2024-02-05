@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--clr-black);
+    font-family: 'Rubik', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+header {
+    box-shadow: 0 1.2rem 0 -1rem rgba(0, 0, 0, 0.25);
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    height: 100px;
+    top: 0;
+    background-color: $white;
+
+    nav {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            width: 200px;
+            margin-right: auto;
+            margin-left: 10px;
+            margin-bottom: 10px;
+
+        }
+    }
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr;
+    margin-top: 100px;
+
+
+    .listado-de-pokemon {
+        grid-column: 1 / 2;
+        grid-row: span 2;
+    }
+
+    .superior-creacion-equipo,
+    .contenedor-pokedex {
+        grid-column: 2;
+    }
+
+    .tu-equipo {
+        font-size: 1rem;
+        font-weight: 600;
+        
+    }
+
+    .superior-creacion-equipo{
+        grid-row: 1;
+        box-shadow: 0 0 6rem -1rem rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        border-radius: 1rem;
+        position: relative;
+    }
+
+    .encabezado{
+        font-size: 1rem;
+        font-weight: 600;
+        position: absolute;
+        top: -15px;
+        margin-left: 25px;
+        border: 0;
+        background-color:$gray;
+        padding: 5px;
+        border-radius: 100vmax;
+        box-shadow: 0 0 2px $black;
+    }
+
+    .alerta{
+        margin-left: auto;
+        margin-right: 20px;
+        margin-bottom:10px;
+        font-size: 1rem;
+        font-weight: 600;
+        color:$white;
+        background-color: $type-fighting;
+        padding: 5px;
+        border-radius: 100vmax;
+        box-shadow: 0 0 2px $black;
+        display: none;
+        animation: zumbido 1s ease-in-out;
+        
+        &.alertaVisible{
+            display: block;
+            
+            @keyframes zumbido {
+            0%, 100% {
+                transform: translateX(0); /* Estado inicial y final: sin traslación */
+            }
+            25%, 75% {
+                transform: translateX(-10px); /* Traslación hacia la izquierda */
+            }
+            50% {
+                transform: translateX(10px); /* Traslación hacia la derecha */
+            }
+        }
+        }
+    }
+
+    .creacion-de-equipo {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        min-height: 200px;
+        
+        .cartas-de-equipo {
+            margin: 10px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            text-transform: uppercase;
+            box-shadow: 0 0 3rem -1rem rgba(0, 0, 0.25);
+
+            // transition:0.3s ease;
+            p {
+                margin: 5px;
+                padding: 10px;
+                border-radius: 100vmax;
+                box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+                cursor: default;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            // &:hover{
+            //     transform: scale(1.1);
+            // }
+        }
+    }
+
+    .contenedor-pokedex {
+        grid-row: 2;
+        display: grid;
+        padding: 20px;
+        grid-template-columns:
+            repeat(auto-fit,
+                minmax(200px, 1fr));
+        // repeat(4, minmax(150px, 1fr)) 1fr;
+        gap: 1rem;
+
+        .carta-pokedex {
+            height: auto;
+            border-radius: 1 rem;
+            background-color: $white;
+            box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.25);
+            text-transform: uppercase;
+            padding: 1rem;
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s ease;
+            border-radius: 1rem;
+
+            &:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+            }
+
+            .id-fondo-pokedex {
+                position: absolute;
+                top: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 5rem;
+                font-weight: 600;
+                z-index: -1;
+                color: $gray;
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+            }
+
+            .container-imagen-pokedex {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 100%px;
+                    min-width: 10rem;
+                }
+
+            }
+
+            .info-pokedex {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-inline: 0.25rem;
+
+                .container-info-pokedex {
+                    display: flex;
+                    align-items: center;
+
+
+                    .id-pokedex {
+                        width: auto;
+                        margin: 1rem;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        padding: 0.25rem 0.5rem;
+                        background-color: $gray;
+                        border-radius: 100vmax;
+
+                    }
+
+                    .nombre-pokedex {
+                        width: auto;
+                        margin: 1rem;
+                        font-size: 1rem;
+                        font-weight: 600;
+
+                    }
+                }
+
+                .container-types-pokedex {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+
+                    .tipos {
+                        padding: 0.25rem 0.25rem;
+                        border-radius: 100vmax;
+                        font-weight: 600;
+                        font-size: 1rem;
+                        margin: 0px 10px 0px 10px;
+
+                        &:hover {
+                            box-shadow: 0 0 2px rgba(0, 0, 0, 0.50);
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

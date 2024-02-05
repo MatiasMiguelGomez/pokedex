@@ -1,0 +1,16 @@
+@media screen and (max-width: 915px) {
+
+    .creacion-de-equipo {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .cartas-de-equipo {
+            width: calc(33.33% - 20px);
+            /* 33.33% de ancho y margen entre elementos */
+        }
+    }
+    .container-info-pokedex {
+        display: flex;
+        justify-content: center;
+    }
+}

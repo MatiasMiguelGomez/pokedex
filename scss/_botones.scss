@@ -1,0 +1,132 @@
+.btn-header {
+    border: 0;
+    border-radius: 0;
+    background-color:$gray;
+}
+
+.btn{
+    padding: 10px;
+    border-radius: 100vmax;
+    box-shadow: 0 0 2px $black;
+    margin: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 10px;
+    max-height: 50px;
+    transition: 0.3s ease;
+    &:hover{
+        box-shadow: 0 0 2px $black, 0 0 5px $black;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+.boton-header{
+    border: 0;
+    background-color:$gray;
+    padding: 10px;
+    border-radius: 100vmax;
+    box-shadow: 0 0 2px $black;
+    margin: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 10px;
+    max-height: 50px;
+    transition: 0.3s ease;
+    &:hover{
+        box-shadow: 0 0 2px $black, 0 0 5px $black;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+.normal{
+    background-color: $type-normal;
+    color:black;
+}
+
+.fire{
+    background-color:$type-fire;
+    color:black;
+}
+
+.water{
+    background-color:$type-water;
+    color:white;
+}
+
+.grass{
+    background-color:$type-grass;
+    color:black;
+}
+
+.electric{
+    background-color:$type-electric;
+    color:black;
+}
+
+.ice{
+    background-color:$type-ice;
+    color:black;
+}
+
+.fighting{
+    background-color:$type-fighting;
+    color:white;
+}
+
+.poison{
+    background-color:$type-poison;
+    color:white;
+}
+
+.ground{
+    background-color:$type-ground;
+    color:black;
+}
+
+.flying{
+    background-color:$type-flying;
+    color:black;
+}
+
+.psychic{
+    background-color:$type-psychic;
+    color:black;
+}
+
+.bug{
+    background-color:$type-bug;
+    color:black;
+}
+
+.rock{
+    background-color:$type-rock;
+    color:black;
+}
+
+.ghost{
+    background-color:$type-ghost;
+    color:white;
+}
+
+.dark{
+    background-color:$type-dark;
+    color:white;
+}
+
+.dragon{
+    background-color:$type-dragon;
+    color:white;
+}
+
+.steel{
+    background-color:$type-steel;
+    color:black;
+}
+
+.fairy{
+    background-color:$type-fairy;
+    color:black;
+}
+

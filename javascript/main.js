@@ -12,9 +12,9 @@ let alerta = document.getElementById("alerta");
 
 //funciones
 const renderizarPokemon = (poke) => {
-  let tipos = poke.types.map((type) => `<p class="${type.type.name} tipos">${type.type.name}</p>`);
-  tipos = tipos.join("");
-  let tiposVerificables = poke.types.map((type) => type.type.name);
+  let parrafoDinamico = poke.types.map((type) => `<p class="${type.type.name} tipos">${type.type.name}</p>`);
+  parrafoDinamico = parrafoDinamico.join("");
+  let tipos = poke.types.map((type) => type.type.name);
 
   let pokeId = poke.id.toString();
   if(pokeId.length === 1){
@@ -36,33 +36,48 @@ const renderizarPokemon = (poke) => {
        <p class="nombre-pokedex">${poke.name}</p>
       </div>
       <div class="container-types-pokedex">
-        ${tipos}
+        ${parrafoDinamico}
       </div>
     </div>
   `;
   
   carta.addEventListener("click", () => {
-    creacionEquipo(poke, tipos);
+    creacionEquipo(poke, tipos, parrafoDinamico);
     renderizadoEquipo()
     alertaAgregadoAlEquipo(poke.name, poke.sprites.front_default);
-    verificacionTipos(tiposVerificables);
+    verificacionTipos();
   });
   contenedorPokedex.append(carta);
 }
 
-const creacionEquipo = (poke, tipos) => {
+const creacionEquipo = (poke, tipos, parrafoDinamico) => {
   if (equipo.length < 6) {
     const pokemonEquipo = {
       name: poke.name,
       tipos: tipos,
       imagen: poke.sprites.front_default,
+      parrafoDinamico: parrafoDinamico,
     };
     equipo.push(pokemonEquipo);
-    console.log(equipo);
+    console.log(pokemonEquipo);
   } else {
     console.log("No puedes agregar más Pokémon a tu equipo");
   }
 };
+
+const verificacionTipos = () => {
+  let verificacion = {};
+  for (const pokemon of equipo) {
+    let pokemonTipo = pokemon.tipos;
+   for (const tipo in pokemonTipo) {
+    verificacion[tipo] = (verificacion[tipo] || 0) + 1;
+   }
+  }
+  const tiposRepetidos = Object.keys(verificacion).filter(tipo => verificacion[tipo] > 2);
+  if(tiposRepetidos.length === 2){
+    alerta.classList.add("alertaVisible");
+  }
+}
 
 const renderizadoEquipo = () => {
   contenedorCreacionEquipo.innerHTML = "";
@@ -72,7 +87,7 @@ const renderizadoEquipo = () => {
     cartaEquipo.innerHTML = `
     <img src=${pokemon.imagen} alt="${pokemon.name}" class="imagen-equipo-pokemon">
     <p class="equipo-nombre-pokemon">${pokemon.name}</p>
-    ${pokemon.tipos}
+    ${pokemon.parrafoDinamico}
     `;
     contenedorCreacionEquipo.append(cartaEquipo);
   });
@@ -90,20 +105,6 @@ const alertaAgregadoAlEquipo = (nombre, imagen) =>{
   });
 };
 
-const verificacionTipos = (tipoAVerificar) => {
-  let verificacion = {};
-  for (const pokemon of equipo) {
-    let tipoVerificable = tipoAVerificar;
-    if(verificacion[tipoAVerificar] && verificacion[tipoAVerificar] >= 2){
-      alerta.classList.add("alertaVisible");
-      return
-    }
-
-    verificacion[tipoVerificable] = (verificacion[tipoVerificable] || 0) + 1;
-  }
-}
-
-//codigo
 
 for (let i = 1; i <= 151; i++) {
   fetch(URL + i)
@@ -125,7 +126,7 @@ botonesHeader.forEach(boton => boton.addEventListener("click", (Event) => {
           renderizarPokemon(data);
         }else{
           let filtrado = data.types.map(tipo => tipo.type.name);
-          if(filtrado.some(filtrado => filtrado.includes(botonId))){
+          if(filtrado.some((filtrado) => filtrado.includes(botonId))){
             renderizarPokemon(data);
           }
         }
@@ -135,7 +136,7 @@ botonesHeader.forEach(boton => boton.addEventListener("click", (Event) => {
 }));
 
 guardarEquipo.addEventListener("click", () => {
-   guardadoDeEquipo = localStorage.setItem("guardadoDeEquipo", JSON.stringify(equipo));
+   let guardadoDeEquipo = localStorage.setItem("guardadoDeEquipo", JSON.stringify(equipo));
    Swal.fire({
     position: "top-end",
     icon: "success",
@@ -147,8 +148,8 @@ guardarEquipo.addEventListener("click", () => {
 
 mostrarEquipo.addEventListener("click", () =>{
   let recuperarEquipo = localStorage.getItem("guardadoDeEquipo");
-  renderizadoEquipo(JSON.parse(recuperarEquipo));
   equipo.length=0;
+  renderizadoEquipo(JSON.parse(recuperarEquipo));
   equipo.push(...JSON.parse(recuperarEquipo));
   renderizadoEquipo()
 })

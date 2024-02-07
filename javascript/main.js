@@ -45,7 +45,7 @@ const renderizarPokemon = (poke) => {
     creacionEquipo(poke, tipos, parrafoDinamico);
     renderizadoEquipo()
     alertaAgregadoAlEquipo(poke.name, poke.sprites.front_default);
-    verificacionTipos();
+    verificacionTipos(equipo);
   });
   contenedorPokedex.append(carta);
 }
@@ -65,18 +65,26 @@ const creacionEquipo = (poke, tipos, parrafoDinamico) => {
   }
 };
 
-const verificacionTipos = () => {
-  let verificacion = {};
-  for (const pokemon of equipo) {
-    let pokemonTipo = pokemon.tipos;
-   for (const tipo in pokemonTipo) {
-    verificacion[tipo] = (verificacion[tipo] || 0) + 1;
-   }
+const verificacionTipos = (equipo) => {
+  const tiposEquipos = equipo.map(pokemon => pokemon.tipos).flat();
+  console.log(tiposEquipos);
+  const contador = {};
+  tiposEquipos.forEach(tipo => {
+  contador[tipo] = (contador[tipo] || 0) + 1;
+});
+
+let tieneTiposRepetidos = false;
+Object.values(contador).forEach(ocurrencias => {
+  if (ocurrencias > 2) {
+    tieneTiposRepetidos = true;
   }
-  const tiposRepetidos = Object.keys(verificacion).filter(tipo => verificacion[tipo] > 2);
-  if(tiposRepetidos.length === 2){
-    alerta.classList.add("alertaVisible");
-  }
+});
+
+if (tieneTiposRepetidos) {
+  alerta.classList.add("alertaVisible");
+}
+
+  console.log(contador);
 }
 
 const renderizadoEquipo = () => {
@@ -169,8 +177,11 @@ eliminarEquipo.addEventListener("click", () => {
   });
 })
 
-// 1)la api carga los elementos de manera desordenada si se recarga varias veces la pagina, no se como solucionar eso.
-// 2)intente tambien hacer un archivo js unico para variables y aplicarles el export y otro para funciones pero al importarlos en main.js
-// algunas variables aparecian como que no las estaba usando en el documento y viceversa, que algunas funciones no las estaba usando en el documento
-// quizas es el orden en que son declaradas y llamadas? le di varias vueltas pero al final no lo pude resolver tampoco.
- 
+/*
+1)la api carga los elementos de manera desordenada si se recarga varias veces la pagina, no se como solucionar eso.
+2)intente tambien hacer un archivo js unico para variables y aplicarles el export y otro para funciones pero al importarlos en main.js
+algunas variables aparecian como que no las estaba usando en el documento y viceversa, que algunas funciones no las estaba usando en el documento
+quizas es el orden en que son declaradas y llamadas? le di varias vueltas pero al final no lo pude resolver tampoco.
+3)Para la verificacion tuve que usar Object.keys, que tengo entendido que es programacion orientada a objetos, no es el resultadomas optimo
+por que no compara cuando tiene un unico tipo, compara si tiene 2 pero voy a seguir investigando sobre la programacion otientada a objetos
+*/

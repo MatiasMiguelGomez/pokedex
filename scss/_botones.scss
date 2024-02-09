@@ -14,6 +14,7 @@
     margin-right: 10px;
     max-height: 50px;
     transition: 0.3s ease;
+    font-size: 0.9rem;
     &:hover{
         box-shadow: 0 0 2px $black, 0 0 5px $black;
         cursor: pointer;
@@ -22,6 +23,7 @@
 }
 
 .boton-header{
+font-size: 0.9rem;
     border: 0;
     background-color:$gray;
     padding: 10px;
@@ -37,6 +39,21 @@
         box-shadow: 0 0 2px $black, 0 0 5px $black;
         cursor: pointer;
         transform: scale(1.1);
+    }
+}
+
+
+.tipos {
+    padding: 0.25rem 0.25rem;
+    border-radius: 100vmax;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0px 10px 0px 10px;
+    width: fit-content;
+
+    &:hover {
+        box-shadow: 0 0 1rem -0.3rem rgba(0, 0, 0, 0.7);
+        cursor: default;
     }
 }
 

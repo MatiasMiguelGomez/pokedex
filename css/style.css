@@ -15,6 +15,7 @@
   margin-right: 10px;
   max-height: 50px;
   transition: 0.3s ease;
+  font-size: 0.9rem;
 }
 .btn:hover {
   box-shadow: 0 0 2px #1c1c1c, 0 0 5px #1c1c1c;
@@ -23,6 +24,7 @@
 }
 
 .boton-header {
+  font-size: 0.9rem;
   border: 0;
   background-color: #ececec;
   padding: 10px;
@@ -39,6 +41,19 @@
   box-shadow: 0 0 2px #1c1c1c, 0 0 5px #1c1c1c;
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.tipos {
+  padding: 0.25rem 0.25rem;
+  border-radius: 100vmax;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0px 10px 0px 10px;
+  width: fit-content;
+}
+.tipos:hover {
+  box-shadow: 0 0 1rem -0.3rem rgba(0, 0, 0, 0.7);
+  cursor: default;
 }
 
 .normal {
@@ -155,7 +170,7 @@ header {
   box-shadow: 0 1.2rem 0 -1rem rgba(0, 0, 0, 0.25);
   width: 100%;
   position: fixed;
-  z-index: 1000;
+  z-index: 998;
   height: 100px;
   top: 0;
   background-color: #f7f7f7;
@@ -210,6 +225,18 @@ header nav .logo {
   border-radius: 100vmax;
   box-shadow: 0 0 2px #1c1c1c;
 }
+.main .encabezadoInfo {
+  font-size: 1rem;
+  font-weight: 600;
+  position: absolute;
+  top: -15px;
+  margin-left: 130px;
+  border: 0;
+  background-color: #ececec;
+  padding: 5px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+}
 .main .alerta {
   margin-left: auto;
   margin-right: 20px;
@@ -229,13 +256,16 @@ header nav .logo {
 }
 @keyframes zumbido {
   0%, 100% {
-    transform: translateX(0); /* Estado inicial y final: sin traslación */
+    transform: translateX(0);
+    /* Estado inicial y final: sin traslación */
   }
   25%, 75% {
-    transform: translateX(-10px); /* Traslación hacia la izquierda */
+    transform: translateX(-10px);
+    /* Traslación hacia la izquierda */
   }
   50% {
-    transform: translateX(10px); /* Traslación hacia la derecha */
+    transform: translateX(10px);
+    /* Traslación hacia la derecha */
   }
 }
 .main .creacion-de-equipo {
@@ -254,6 +284,19 @@ header nav .logo {
   height: auto;
   text-transform: uppercase;
   box-shadow: 0 0 3rem -1rem rgb(0, 0, 0);
+  position: relative;
+}
+.main .creacion-de-equipo .cartas-de-equipo .quitarDeEquipo {
+  background-image: url(../imagenes/icon.png);
+  background-size: cover;
+  background-color: #C03028;
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
 .main .creacion-de-equipo .cartas-de-equipo p {
   margin: 5px;
@@ -347,8 +390,253 @@ header nav .logo {
   margin: 0px 10px 0px 10px;
 }
 .main .contenedor-pokedex .carta-pokedex .info-pokedex .container-types-pokedex .tipos:hover {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1rem -0.3rem rgba(0, 0, 0, 0.7);
   cursor: default;
+}
+
+.modalInfo {
+  padding: 2rem;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: popup 0.7s ease;
+}
+@keyframes popup {
+  0% {
+    transform: scale(0.3) translate(-50%, -50%);
+    transform-origin: center center;
+  }
+  50% {
+    transform: scale(1.2) translate(-50%, -50%);
+  }
+  75% {
+    transform: scale(0.9) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+.modalInfo .modalImagen {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  margin-bottom: 10px;
+  background-image: url(../imagenes/fondo.jpg);
+  background-size: cover;
+}
+.modalInfo .modalImagen img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(2);
+  border: none;
+}
+.modalInfo .stats {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr, 1fr;
+  gap: 0.5rem;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding-top: 1rem;
+}
+.modalInfo .stats .stats-arriba {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: space-between;
+}
+.modalInfo .stats .stats-izquierda {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-top: 2px solid rgba(160, 64, 160, 0.7);
+  border-bottom: 2px solid rgba(160, 64, 160, 0.7);
+}
+.modalInfo .stats .stats-izquierda label:nth-child(1) {
+  background-color: #78C850;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats .stats-izquierda label:nth-child(2) {
+  background-color: #F08030;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats .stats-izquierda label:nth-child(3) {
+  background-color: #98D8D8;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats .stats-derecha {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  border-top: 2px solid rgba(160, 64, 160, 0.7);
+  border-bottom: 2px solid rgba(160, 64, 160, 0.7);
+}
+.modalInfo .stats .stats-derecha label:nth-child(1) {
+  background-color: #78C850;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  margin-left: auto;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats .stats-derecha label:nth-child(2) {
+  background-color: #F08030;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  margin-left: auto;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats .stats-derecha label:nth-child(3) {
+  background-color: #98D8D8;
+  color: black;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  margin-left: auto;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats-abajo {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+.modalInfo .stats-abajo label:nth-child(1) {
+  background-color: #C03028;
+  color: #f7f7f7;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  flex-wrap: no-wrap;
+}
+.modalInfo .stats-abajo label:nth-child(2) {
+  background-color: #C03028;
+  color: #f7f7f7;
+  border: 0;
+  padding: 10px;
+  border-radius: 100vmax;
+  box-shadow: 0 0 2px #1c1c1c;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  max-height: 50px;
+  width: fit-content;
+  flex-wrap: no-wrap;
+}
+.modalInfo .botones {
+  margin-top: 0.5rem;
+}
+.modalInfo .botones button {
+  border: none;
+}
+.modalInfo.modalInfoVisible {
+  display: block;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+.backdrop.backdropVisible {
+  display: block;
 }
 
 @media screen and (max-width: 915px) {

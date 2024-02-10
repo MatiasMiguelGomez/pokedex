@@ -136,14 +136,22 @@ const verificacionTipos = (equipo) => {
     contador[tipo] = (contador[tipo] || 0) + 1;
   });
     
-  Object.values(contador).forEach(ocurrencias => {
-    if (ocurrencias > 2) {
-      alerta.classList.add("alertaVisible");
-    }else{
-      alerta.classList.remove("alertaVisible");
-    }
-  });
+  // Object.values(contador).forEach(ocurrencias => {
+  //   if (ocurrencias > 2) {
+  //     alerta.classList.add("alertaVisible");
+  //   }
+  //   else{
+  //     alerta.classList.remove("alertaVisible");
+  //   }
+  // });
+  const tiposRepetidos = Object.values(contador).some(ocurrencias => ocurrencias > 2);
 
+  // Agregar o quitar la clase de alerta según corresponda
+  if (tiposRepetidos) {
+    alerta.classList.add("alertaVisible");
+  } else {
+    alerta.classList.remove("alertaVisible");
+  }
 }
 
 const renderizadoEquipo = () => {
@@ -161,14 +169,21 @@ const renderizadoEquipo = () => {
     let quitarDeEquipo = document.createElement("button");
     quitarDeEquipo.classList.add("quitarDeEquipo");
     cartaEquipo.append(quitarDeEquipo);
-    quitarDeEquipo.addEventListener("click", () =>{
-      let index = equipo.indexOf(pokemon);
-      if (index !== -1) {
-        equipo.splice(index, 1);
-      renderizadoEquipo();
-      verificacionTipos(equipo);
-  }})
+    quitarDeEquipo.addEventListener("click", () => {
+    eliminarPokemon(pokemon);
+    console.log("click")
+    });
   });
+};
+
+
+const eliminarPokemon = (pokemon) => {
+  let index = equipo.indexOf(pokemon);
+  if (index !== -1) {
+    equipo.splice(index, 1);
+    verificacionTipos(equipo); // Verificar tipos después de eliminar un Pokémon
+    renderizadoEquipo(); // Renderizar equipo actualizado después de eliminar el Pokémon
+  }
 };
 
 const alertaAgregadoAlEquipo = (nombre, imagen) => {
